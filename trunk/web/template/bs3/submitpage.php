@@ -96,7 +96,7 @@ echo"<option value=$i ".( $lastlang==$i?"selected":"").">
 <br>
 <input id="Submit" class="btn btn-info" type=button value="<?php echo $MSG_SUBMIT?>" onclick="do_submit();" >
 <?php if (isset($OJ_TEST_RUN)&&$OJ_TEST_RUN){?>
-	<input id="TestRun" class="btn btn-info" type=button value="<?php echo $MSG_TR?>" onclick=do_test_run();>
+<input id="TestRun" class="btn btn-info" type=button value="<?php echo $MSG_TR?>" onclick=do_test_run();>
 <?php }?>
 <span class="btn" id=result>状态</span>
 <?php if (isset($OJ_BLOCKLY)&&$OJ_BLOCKLY){?>
@@ -193,55 +193,54 @@ return ret+"";
 }
 var count=0;
 function do_submit(){
-if(using_blockly) 
- translate();
-if(typeof(eAL) != "undefined"){ eAL.toggle("source");eAL.toggle("source");}
-var mark="<?php echo isset($id)?'problem_id':'cid';?>";
-var problem_id=document.getElementById(mark);
-if(mark=='problem_id')
-problem_id.value='<?php if (isset($id))echo $id?>';
-else
-problem_id.value='<?php if (isset($cid))echo $cid?>';
-document.getElementById("frmSolution").target="_self";
-<?php if($OJ_LANG=="cn") echo "if(checksource(document.getElementById('source').value))";?>
-document.getElementById("frmSolution").submit();
+	if(using_blockly) 
+		 translate();
+	if(typeof(eAL) != "undefined"){ eAL.toggle("source");eAL.toggle("source");}
+	var mark="<?php echo isset($id)?'problem_id':'cid';?>";
+	var problem_id=document.getElementById(mark);
+	if(mark=='problem_id')
+	problem_id.value='<?php if (isset($id))echo $id?>';
+	else
+	problem_id.value='<?php if (isset($cid))echo $cid?>';
+	document.getElementById("frmSolution").target="_self";
+	<?php if($OJ_LANG=="cn") echo "if(checksource(document.getElementById('source').value))";?>
+	document.getElementById("frmSolution").submit();
 }
 var handler_interval;
 function do_test_run(){
-if( handler_interval) window.clearInterval( handler_interval);
-var loader="<img width=18 src=image/loader.gif>";
-var tb=window.document.getElementById('result');
-if(typeof(eAL) != "undefined"){ eAL.toggle("source");eAL.toggle("source");}
-if($("#source").val().length<10) return alert("too short!");
-tb.innerHTML=loader;
-
-var mark="<?php echo isset($id)?'problem_id':'cid';?>";
-var problem_id=document.getElementById(mark);
-problem_id.value=-problem_id.value;
-document.getElementById("frmSolution").target="testRun";
-//document.getElementById("frmSolution").submit();
-$.post("submit.php?ajax",$("#frmSolution").serialize(),function(data){fresh_result(data);});
-document.getElementById("TestRun").disabled=true;
-document.getElementById("Submit").disabled=true;
-problem_id.value=-problem_id.value;
-count=20;
-handler_interval= window.setTimeout("resume();",1000);
+	if( handler_interval) window.clearInterval( handler_interval);
+	var loader="<img width=18 src=image/loader.gif>";
+	var tb=window.document.getElementById('result');
+	if(typeof(eAL) != "undefined"){ eAL.toggle("source");eAL.toggle("source");}
+	if($("#source").val().length<10) return alert("too short!");
+	if(tb!=null)tb.innerHTML=loader;
+	var mark="<?php echo isset($id)?'problem_id':'cid';?>";
+	var problem_id=document.getElementById(mark);
+	problem_id.value=-problem_id.value;
+	document.getElementById("frmSolution").target="testRun";
+	//document.getElementById("frmSolution").submit();
+	$.post("submit.php?ajax",$("#frmSolution").serialize(),function(data){fresh_result(data);});
+  	$("#Submit").prop('disabled', true);
+  	$("#TestRub").prop('disabled', true);
+	problem_id.value=-problem_id.value;
+	count=20;
+	handler_interval= window.setTimeout("resume();",1000);
 }
 function resume(){
-count--;
-var s=document.getElementById('Submit');
-var t=document.getElementById('TestRun');
-if(count<0){
-s.disabled=false;
-t.disabled=false;
-s.value="<?php echo $MSG_SUBMIT?>";
-t.value="<?php echo $MSG_TR?>";
-if( handler_interval) window.clearInterval( handler_interval);
-}else{
-s.value="<?php echo $MSG_SUBMIT?>("+count+")";
-t.value="<?php echo $MSG_TR?>("+count+")";
-window.setTimeout("resume();",1000);
-}
+	count--;
+	var s=$("#Submit")[0];
+	var t=$("#TestRub")[0];
+	if(count<0){
+		s.disabled=false;
+		if(t!=null)t.disabled=false;
+		s.value="<?php echo $MSG_SUBMIT?>";
+		if(t!=null)t.value="<?php echo $MSG_TR?>";
+		if( handler_interval) window.clearInterval( handler_interval);
+	}else{
+		s.value="<?php echo $MSG_SUBMIT?>("+count+")";
+		if(t!=null)t.value="<?php echo $MSG_TR?>("+count+")";
+		window.setTimeout("resume();",1000);
+	}
 }
 function reloadtemplate(lang){
    document.cookie="lastlang="+lang.value;
@@ -287,6 +286,5 @@ function loadFromBlockly(){
 //  $("#Submit").prop('disabled', false);
 }
 </script>
-
   </body>
 </html>
