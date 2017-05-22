@@ -7,8 +7,22 @@ if (!isset($_SESSION['user_id'])){
 }
 require_once("include/db_info.inc.php");
 require_once("include/const.inc.php");
-  $now=strftime("%Y-%m-%d %H:%M",time());
+$now=strftime("%Y-%m-%d %H:%M",time());
 $user_id=$_SESSION['user_id'];
+
+        $sql="SELECT count(1) FROM `solution` WHERE result<4";
+        $result=mysqli_query($mysqli,$sql);
+        $row=mysqli_fetch_array($result);
+        if($row[0]>20) $OJ_VCODE=true;
+        mysqli_free_result($result);
+$vcode=$_POST["vcode"];
+if($OJ_VCODE&&($_SESSION["vcode"]==null||$vcode!= $_SESSION["vcode"]||$vcode==""||$vcode==null) ){
+        $_SESSION["vcode"]=null;
+        $err_str=$err_str."Verification Code Wrong!\\n";
+        $err_cnt++;
+	exit(0);
+}
+
 if (isset($_POST['cid'])){
 	$pid=intval($_POST['pid']);
 	$cid=intval($_POST['cid']);
@@ -147,7 +161,7 @@ if ($len>65536){
 }
 
 // last submit
-$now=strftime("%Y-%m-%d %X",time()-10);
+$now=strftime("%Y-%m-%d %X",time()-1);
 $sql="SELECT `in_date` from `solution` where `user_id`='$user_id' and in_date>'$now' order by `in_date` desc limit 1";
 $res=mysqli_query($mysqli,$sql);
 if (mysqli_num_rows($res)==1){
@@ -163,6 +177,7 @@ if (mysqli_num_rows($res)==1){
 
 
 if((~$OJ_LANGMASK)&(1<<$language)){
+
 	if (!isset($pid)){
 	$sql="INSERT INTO solution(problem_id,user_id,in_date,language,ip,code_length,result)
 		VALUES('$id','$user_id',NOW(),'$language','$ip','$len',14)";
@@ -174,8 +189,10 @@ if((~$OJ_LANGMASK)&(1<<$language)){
 	$insert_id=mysqli_insert_id($mysqli);
 	$sql="INSERT INTO `source_code_user`(`solution_id`,`source`)VALUES('$insert_id','$source_user')";
 	mysqli_query($mysqli,$sql);
+
 	$sql="INSERT INTO `source_code`(`solution_id`,`source`)VALUES('$insert_id','$source')";
 	mysqli_query($mysqli,$sql);
+
 	if($test_run){
 		$sql="INSERT INTO `custominput`(`solution_id`,`input_text`)VALUES('$insert_id','$input_text')";
 		mysqli_query($mysqli,$sql);

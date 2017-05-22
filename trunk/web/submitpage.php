@@ -46,7 +46,7 @@ if (isset($_GET['id'])){
 	}
 	
  }
-if(isset($id))$problem_id=$id;
+$problem_id=$id;
 $view_sample_input="1 2";
 $view_sample_output="3";
  if(isset($sample_sql)){
@@ -72,6 +72,15 @@ if(!$view_src){
    }
 
 }
+	$sql="SELECT count(1) FROM `solution` WHERE result<4";
+	$result=mysqli_query($mysqli,$sql);
+	$row=mysqli_fetch_array($result);
+	if($row[0]>10) {
+		$OJ_VCODE=true;
+//		$OJ_TEST_RUN=false;
+//		echo "$row[0]";
+	}
+	mysqli_free_result($result);
 
 
 /////////////////////////Template
