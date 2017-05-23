@@ -2246,8 +2246,11 @@ int main(int argc, char** argv) {
 		time_lmt = time_lmt + java_time_bonus;
 		mem_lmt = mem_lmt + java_memory_bonus;
 		// copy java.policy
-		execute_cmd("/bin/cp %s/etc/java0.policy %s/java.policy", oj_home,
-				work_dir);
+		if(lang==3){
+			execute_cmd("/bin/cp %s/etc/java0.policy %s/java.policy", oj_home,work_dir);
+			execute_cmd("chmod 755 %s/java.policy", work_dir);
+			execute_cmd("chown judge %s/java.policy", work_dir);
+		}
 
 	}
 
