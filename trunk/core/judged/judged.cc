@@ -161,7 +161,7 @@ void init_mysql_conf() {
 	sleep_time = 1;
 	oj_tot = 1;
 	oj_mod = 0;
-	strcpy(oj_lang_set, "0,1,2,3,4,5,6,7,8,9,10");
+	strcpy(oj_lang_set, "0,1,2,3");
 	fp = fopen("./etc/judge.conf", "r");
 	if (fp != NULL) {
 		while (fgets(buf, BUFFER_SIZE - 1, fp)) {
@@ -205,8 +205,8 @@ void run_client(int runid, int clientid) {
 	LIM.rlim_cur = 800;
 	setrlimit(RLIMIT_CPU, &LIM);
 
-	LIM.rlim_max = 80 * STD_MB;
-	LIM.rlim_cur = 80 * STD_MB;
+	LIM.rlim_max = 180 * STD_MB;
+	LIM.rlim_cur = 180 * STD_MB;
 	setrlimit(RLIMIT_FSIZE, &LIM);
 
 	LIM.rlim_max = STD_MB << 11;
@@ -339,12 +339,12 @@ int _get_jobs_mysql(int * jobs) {
 	while (res!=NULL && (row = mysql_fetch_row(res)) != NULL) {
 		jobs[i++] = atoi(row[0]);
 	}
-	
- 	if(res!=NULL){
- 		mysql_free_result(res);                         // free the memory
- 		res=NULL;
- 	}                        
- 	else i=0;
+
+	if(res!=NULL&&!executesql("commit")){
+		mysql_free_result(res);                         // free the memory
+		res=NULL;
+	}                        
+	else i=0;
 	ret = i;
 	while (i <= max_running * 2)
 		jobs[i++] = 0;
@@ -492,9 +492,9 @@ int work() {
 	}
 	if (!http_judge) {
 		if(res!=NULL) {
- 			mysql_free_result(res);                         // free the memory
- 			res=NULL;
- 		}
+			mysql_free_result(res);                         // free the memory
+			res=NULL;
+		}
 		executesql("commit");
 	}
 	if (DEBUG && retcnt)
@@ -604,6 +604,7 @@ int main(int argc, char** argv) {
 
 			j = work();
 
+			if(ONCE) break;
 		}
 		if(ONCE) break;
 		sleep(sleep_time);
@@ -611,4 +612,3 @@ int main(int argc, char** argv) {
 	}
 	return 0;
 }
-
