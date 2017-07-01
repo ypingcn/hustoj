@@ -44,6 +44,7 @@ sed -i "s:#\tinclude fastcgi_params;:\tinclude fastcgi_params;\n\t}:g" /etc/ngin
 sed -i "s/post_max_size = 8M/post_max_size = 80M/g" /etc/php/7.0/fpm/php.ini
 sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 80M/g" /etc/php/7.0/fpm/php.ini
 /etc/init.d/php7.0-fpm restart
+service php7.0-fpm restart
 
 cd src/core
 ./make.sh
