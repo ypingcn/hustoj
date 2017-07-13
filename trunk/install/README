@@ -1,27 +1,13 @@
 HUSTOJ安装说明 
 	by zhblue(newsclan@gmail.com)
-方法一、
+方法1、
 
-1、安装Ubuntu 16.04 LTS  (14.04 need the master branch)  
-2、执行如下命令  
-    sudo apt-get update  
-    sudo apt-get install subversion  
-    sudo svn co https://github.com/zhblue/hustoj/branches/php7/trunk/install hustoj  
-    cd hustoj  
-    sudo bash install-interactive.sh  
-3、安装后访问服务器80端口上的web服务JudgeOnline目录  
-    例如 w3m http://127.0.0.1/JudgeOnline  
-
-   运行前阅读脚本头部说明设置数据库帐号。使用root运行。
-
-方法二、
-
-如果是阿里云，系统选择ubuntu16.04，可以使用下面脚本
+系统选择ubuntu16.04，可以使用下面脚本
 
     wget https://raw.githubusercontent.com/zhblue/hustoj/php7/trunk/install/install-ubuntu16.04.sh
     chmod +x install-ubuntu16.04.sh
     sudo ./install-ubuntu16.04.sh
     
-方法三、
+方法2、
 
 参考视频  https://v.qq.com/x/page/c03955kvowx.html
