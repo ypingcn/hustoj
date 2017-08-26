@@ -50,7 +50,11 @@ $sql=	"SELECT UNIX_TIMESTAMP(date(in_date))*1000 md,count(1) c FROM `solution` w
 		array_push($chart_data_ac,array($row['md'],$row['c']));
     }
     
-	
+  $sql="select avg(sp) sp from (select  count(1) sp,judgetime from solution where result>3 and judgetime>convert(now()-60,DATE)  group by judgetime order by sp) tt;";
+  $result=pdo_query($sql);
+  $speed=$result[0][0];
+
+
 
 
 if(function_exists('apc_cache_info')){
