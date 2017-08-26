@@ -27,6 +27,7 @@
       <div class="jumbotron">
         <p>
 <center>
+	 Last minute average judge speed: <?php echo $speed?> sps.
 <div id=submission style="width:80%;height:300px" ></div>
 </center>
         </p>
