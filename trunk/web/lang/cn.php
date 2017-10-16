@@ -1,11 +1,11 @@
 <?php
-	$MSG_FAQ="常见问答";
-	$MSG_BBS="讨论版";
+	$MSG_FAQ="常见问题解答";
+	$MSG_BBS="讨论区";
 	$MSG_HOME="主页";
-	$MSG_PROBLEMS="问题";
+	$MSG_PROBLEMS="问题集";
 	$MSG_STATUS="状态";
 	$MSG_RANKLIST="排名";
-	$MSG_CONTEST="竞赛&作业";
+	$MSG_CONTEST="比赛";
   	$MSG_RECENT_CONTEST="名校联赛";
 	$MSG_LOGOUT="注销";
 	$MSG_LOGIN="登录";
@@ -14,14 +14,14 @@
 	$MSG_ADMIN="管理";
 	$MSG_STANDING="名次";
 	$MSG_STATISTICS="统计";
-	$MSG_USERINFO="修改帐号";
+	$MSG_USERINFO="修改帐号信息";
 	$MSG_MAIL="短消息";
 	
 	$MSG_Pending="等待";
 	$MSG_Pending_Rejudging="等待重判";
 	$MSG_Compiling="编译中";
 	$MSG_Running_Judging="运行并评判";
-	$MSG_Accepted="正确";
+	$MSG_Accepted="通过";
 	$MSG_Presentation_Error="格式错误";
 	$MSG_Wrong_Answer="答案错误";
 	$MSG_Time_Limit_Exceed="时间超限";
@@ -39,15 +39,15 @@
   
 	//fool's day
 if(date('m')==4&&date('d')==1&&rand(0,100)<10){
-        $MSG_Accepted="人品问题-愚人节快乐";
-$MSG_Presentation_Error="人品问题-愚人节快乐";
-$MSG_Wrong_Answer="人品问题-愚人节快乐";
-$MSG_Time_Limit_Exceed="人品问题-愚人节快乐";
-$MSG_Memory_Limit_Exceed="人品问题-愚人节快乐";
-$MSG_Output_Limit_Exceed="人品问题-愚人节快乐";
-$MSG_Runtime_Error="人品问题-愚人节快乐";
-$MSG_Compile_Error="人品问题-愚人节快乐";
-$MSG_Compile_OK="人品问题-愚人节快乐";
+        $MSG_Accepted="通过 @ 愚人节快乐";
+$MSG_Presentation_Error="格式错误 @ 愚人节快乐";
+$MSG_Wrong_Answer="答案错误 @ 愚人节快乐";
+$MSG_Time_Limit_Exceed="时间超限 @ 愚人节快乐";
+$MSG_Memory_Limit_Exceed="内存超限 @ 愚人节快乐";
+$MSG_Output_Limit_Exceed="输出超限 @ 愚人节快乐";
+$MSG_Runtime_Error="运行错误 @ 愚人节快乐";
+$MSG_Compile_Error="编译错误 @ 愚人节快乐";
+$MSG_Compile_OK="编译成功 @ 愚人节快乐";
 }
     $MSG_TEST_RUN="运行完成";
 	$MSG_TR="测试运行";
@@ -86,13 +86,13 @@ $MSG_Compile_OK="人品问题-愚人节快乐";
 	$MSG_Number="名次";
 	$MSG_NICK="昵称";
 	$MSG_SOVLED="解决";
-	$MSG_RATIO="比率";
+	$MSG_RATIO="通过率";
 	
 	//registerpage.php
-	$MSG_USER_ID="用户名（学号）";
-	$MSG_PASSWORD="密码";
-	$MSG_REPEAT_PASSWORD="重复密码";
-	$MSG_SCHOOL="学校";
+	$MSG_USER_ID="用户名";
+	$MSG_PASSWORD="密码(区分大小写)";
+	$MSG_REPEAT_PASSWORD="再次输入密码";
+	$MSG_SCHOOL="学校(推荐使用全称)";
 	$MSG_EMAIL="电子邮件";
 	$MSG_REG_INFO="注册信息";
 	$MSG_VCODE="验证码";
@@ -128,9 +128,9 @@ $MSG_Compile_OK="人品问题-愚人节快乐";
   $MSG_WATCH_RANK="点击这里查看做题排名。";
   $MSG_Public="公开";
   $MSG_Private="私有";
-  $MSG_Running="运行中";
+  $MSG_Running="进行中";
   $MSG_Start="开始于";
-  $MSG_TotalTime="总赛时";
+  $MSG_TotalTime="比赛总时间";
   $MSG_LeftTime="剩余";
   $MSG_Ended="已结束";
   $MSG_Login="请登录后继续操作";
