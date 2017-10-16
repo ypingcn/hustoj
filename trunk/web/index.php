@@ -17,7 +17,7 @@
 			."LIMIT 50";
 	$result=pdo_query($sql);//mysql_escape_string($sql));
 	if (!$result){
-		$view_news= "<h3>No News Now!</h3>";
+		$view_news= "<center><h3>No News Now!</h3></center>";
 	}else{
 		$view_news.= "<table width=96%>";
 		
