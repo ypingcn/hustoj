@@ -28,7 +28,6 @@
 <form action="register.php" method="post">
 <br><br>
 <center><table>
-<tr><td colspan=2 height=40 width=500>&nbsp;&nbsp;&nbsp;<?php echo $MSG_REG_INFO?></td></tr>
 <tr><td width=25%><?php echo $MSG_USER_ID?>:</td>
 <td width=75%><input name="user_id" size=20 type=text placeholder="*"></td>
 </tr>
