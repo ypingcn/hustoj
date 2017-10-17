@@ -26,7 +26,7 @@
 			$view_news.= "<tr><td><td>".$row['content']."</tr>";
 		}
 		
-		$view_news.= "<tr><td width=20%><td>This <a href=http://cm.baylor.edu/welcome.icpc>ACM/ICPC</a> OnlineJudge is a GPL product from <a href=https://github.com/zhblue/hustoj>hustoj</a></tr>";
+		$view_news.= "<tr><td width=20%><td></tr>";
 		$view_news.= "</table>";
 	}
 $view_apc_info="";
