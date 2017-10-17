@@ -26,7 +26,7 @@ header("Pragma: no-cache");
 	$profile='';
 		if (isset($_SESSION['user_id'])){
 				$sid=$_SESSION['user_id'];
-				$profile.= "<li><a href=".$path_fix."modifypage.php>$MSG_USERINFO</a></li>&nbsp;<li><a href='".$path_fix."userinfo.php?user=$sid'><span id=red>$sid</span></a></li>";
+				$profile.= "<br><li><a href=".$path_fix."modifypage.php>$MSG_USERINFO</a></li>&nbsp;<li><a href='".$path_fix."userinfo.php?user=$sid'><span id=red>$sid</span></a></li>";
 		//		$mail=checkmail();
 		//		if ($mail)
 		//			$profile.= "&nbsp;<li><a  class='glyphicon glyphicon-envelope' href=".$path_fix."mail.php>$mail</a></li>";
@@ -45,7 +45,7 @@ header("Pragma: no-cache");
                 if ($OJ_QQ_AUTH){
             $profile.= "<li><a href=".$path_fix."login_qq.php>$MSG_LOGIN(QQ)</a></li>&nbsp;";
                 }
-				$profile.= "<li><a href=".$path_fix."loginpage.php>$MSG_LOGIN</a></li>&nbsp;";
+				$profile.= "<br><li><a href=".$path_fix."loginpage.php>$MSG_LOGIN</a></li>&nbsp;";
 				if($OJ_LOGIN_MOD=="hustoj"){
 					$profile.= "<li><a href=".$path_fix."registerpage.php>$MSG_REGISTER</a></li>&nbsp;";
 				}
